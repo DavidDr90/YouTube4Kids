@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-list no-lines>
+    <ion-list-header>
+      <ion-item text-wrap>
+        <h1>Welcome to YoutTube 4 Kids App</h1>
+      </ion-item>
+    </ion-list-header>
+    <ion-title>please choose your option:</ion-title>
+    <ion-item>
+      <ion-label floating>enter number of videos</ion-label>
+      <ion-input type="number" [(ngModel)]="videoNumber"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-range min="0" max="60" pin="true" [(ngModel)]="time" color="secondary">
+        <ion-label range-left>0</ion-label>
+        <ion-label range-right>60 minutes</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Time</ion-label>
+      <ion-datetime displayFormat="mm:ss" [(ngModel)]="time"></ion-datetime>
+    </ion-item>
+
+    <button ion-button large full (click)="start()">Let's start!</button>
+  </ion-list>
+
+</ion-content>

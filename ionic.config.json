@@ -1,0 +1,7 @@
+{
+  "name": "YouTube4Kids",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

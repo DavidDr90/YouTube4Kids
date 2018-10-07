@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title end>
+      YouTube4Kids
+    </ion-title>
+    you have {{ videoNumber }} videos left to watch
+  </ion-navbar>
+  <ion-navbar>
+    <p *ngIf="hidevalue==false"> {{maxTime}}</p>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ 
+  <ion-item padding>
+    <ion-label floating hint="enter">Enter Word</ion-label>
+    <ion-input type="text" [(ngModel)]="query"></ion-input>
+  </ion-item>
+  <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button>
+
+  <ion-list text-wrap no-padding>
+    <button ion-item *ngFor="let list of playlists | async" (click)="playYouTubeVideo(list)">
+      <ion-thumbnail item-start>
+        <img [src]="list.snippet.thumbnails.default.url">
+      </ion-thumbnail>
+      <h2>{{ list.snippet.title }}</h2>
+      <p>{{ list.snippet.description | slice: 0 : 50 }}</p>
+    </button>
+  </ion-list>
+</ion-content>
