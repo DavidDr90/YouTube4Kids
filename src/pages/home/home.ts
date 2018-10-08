@@ -93,7 +93,8 @@ export class HomePage {
     console.log("video after pop in home page = " + this.videoNumber);
     if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
       let alert = this.alertCtrl.create({
-        title: "It's over, Bye Bye!",
+        // title: "It's over, Bye Bye!",
+        title: "זה נגמר, ביי ביי!",
         buttons: [
           {
             text: 'OK',
