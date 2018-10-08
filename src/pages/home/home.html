@@ -1,22 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title end>
+    <ion-title>
       YouTube4Kids
     </ion-title>
-    you have {{ videoNumber }} videos left to watch
+
   </ion-navbar>
   <ion-navbar>
-    <p *ngIf="hidevalue==false"> {{maxTime}}</p>
+    <ion-title>
+      נשארו עוד {{ videoNumber }} סרטונים
+    </ion-title>
+    <!-- you have {{ videoNumber }} videos left to watch -->
   </ion-navbar>
 </ion-header>
 
 <ion-content>
- 
+
   <ion-item padding>
-    <ion-label floating hint="enter">Enter Word</ion-label>
+    <!-- <ion-label floating hint="enter">Enter Word</ion-label> -->
+    <ion-label floating hint="חיפוש">הכנס מילה לחיפוש</ion-label>
     <ion-input type="text" [(ngModel)]="query"></ion-input>
   </ion-item>
-  <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button>
+  <!-- <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button> -->
+  <button block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">חפש ברשת</button>
 
   <ion-list text-wrap no-padding>
     <button ion-item *ngFor="let list of playlists | async" (click)="playYouTubeVideo(list)">
