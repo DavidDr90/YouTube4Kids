@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { TranslateProvider } from '../../providers/translate/translate';
 
@@ -11,24 +11,58 @@ import { TranslateProvider } from '../../providers/translate/translate';
 export class WelcomePage {
 
   private videoNumber: number;
+  private isTime: boolean;
   private time;
+  minutes;
+  hours;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    private toastCtrl: ToastController,
     private alertCtrl: AlertController, private translate: TranslateProvider) {
   }
 
   start() {
-    if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
-      let alert = this.alertCtrl.create({
-        title: 'Invalid Video Number',
-        buttons: ['OK']
-      });
-      alert.present();
+    if (!this.isTime) {
+      if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
+        this.error("Invalid Video Number");
+      } else {
+        // set the home page as root page
+        this.navCtrl.setRoot(HomePage, { "videoNumber": this.videoNumber });
+      }
     } else {
-      // set the home page as root page
-      this.navCtrl.setRoot(HomePage, { "videoNumber": this.videoNumber });
+      if ( (this.minutes === undefined) && (this.hours === undefined) ) {
+        this.error("choose at least one parmeter, minutes or hours");
+      } else {
+        console.log(this.minutes);
+        console.log(this.hours);
+
+        // let temp = new Date();
+        // temp.setHours(this.hours);
+        // temp.setMinutes(this.minutes);
+        // console.log(temp);
+        // set the home page as root page
+        // this.navCtrl.setRoot(HomePage, { "videoNumber": this.time });
+      }
     }
   }
+
+  error(meg:string){
+    /*
+    let alert = this.alertCtrl.create({
+      title: meg,
+      buttons: ['OK']
+    });
+    alert.present();
+    */
+
+    let toast = this.toastCtrl.create({
+      message: meg,
+      duration: 2000,
+      position: 'middle'
+    });  
+    toast.present();
+  }
+
 
   /** change the display language to the input on
    *  if the lang is 'he' change all the display to be RTL
