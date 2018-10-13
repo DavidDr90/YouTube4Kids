@@ -17,19 +17,31 @@ export class HomePage {
   playlists: Observable<any[]>;
 
   videoNumber;
+  found: boolean = true;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private loadingCtrl: LoadingController,
     private ytProvider: YtProvider, private alertCtrl: AlertController, private plt: Platform) {
-    this.videoNumber = this.navParams.get("videoNumber");
-    console.log("number = " + this.videoNumber);
   }
 
   /** search on line for the releate vidoes with the input word
    */
   searchOnYouTube() {
     this.playlists = this.ytProvider.getPlayList(this.query);
+    let loading = this.loadingCtrl.create({
+      // content: "working on it, please wait..."
+      content: "אנחנו מחפשים, אנא המתן..."
+    });
+    loading.present();
+
     this.playlists.subscribe(data => {
-      console.log('playlists: ', data);
+      loading.dismiss();
+      if (data.length === 0) {
+        this.found = false;
+      }
+      else {
+        this.found = true;
+        console.log('playlists: ', data);
+      }
     }, err => {
       let alert = this.alertCtrl.create({
         title: 'Error',
@@ -73,7 +85,8 @@ export class HomePage {
   presentLoadingText() {
     let loading = this.loadingCtrl.create({
       spinner: 'hide',
-      content: "It's over, Bye Bye!"
+      // content: "It's over, Bye Bye!"
+      content: "זה נגמר, בי בי!"
     });
 
     loading.present();
@@ -88,50 +101,10 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    console.log("in will enter");
     this.videoNumber = this.navParams.get("videoNumber");
-    console.log("video after pop in home page = " + this.videoNumber);
     if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
-      let alert = this.alertCtrl.create({
-        // title: "It's over, Bye Bye!",
-        title: "זה נגמר, ביי ביי!",
-        buttons: [
-          {
-            text: 'OK',
-            role: 'cancel',
-            handler: () => {
-              this.exitApp();
-            }
-          },
-        ]
-      })
-      // alert.present();
-      // this.exitApp();
       this.presentLoadingText();
     }
   }
 
-  maxtime: any = 30
-  timer;
-  maxTime
-  hidevalue
-  ionViewDidEnter() {
-    this.StartTimer();
-  }
-  StartTimer() {
-    this.timer = setTimeout(x => {
-      if (this.maxTime <= 0) { }
-      this.maxTime -= 1;
-
-      if (this.maxTime > 0) {
-        this.hidevalue = false;
-        this.StartTimer();
-      }
-
-      else {
-        this.hidevalue = true;
-      }
-
-    }, 1000);
-  }
 }
