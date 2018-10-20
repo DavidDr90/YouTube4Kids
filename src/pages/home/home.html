@@ -6,8 +6,12 @@
 
   </ion-navbar>
   <ion-navbar>
-    <ion-title>
+    <ion-title *ngIf="!isTime">
       נשארו עוד {{ videoNumber }} סרטונים
+    </ion-title>
+    <ion-title *ngIf="isTime">
+      <p *ngIf="lastMinute" class="lastMinute" id="countdwonTimer"></p>
+      <p *ngIf="!lastMinute" class="allTime" id="countdwonTimer"></p>
     </ion-title>
     <!-- you have {{ videoNumber }} videos left to watch -->
   </ion-navbar>

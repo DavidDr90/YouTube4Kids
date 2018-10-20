@@ -14,28 +14,63 @@
         <h1>Welcome to YoutTube 4 Kids App</h1> 
       </ion-item>
     </ion-list-header> -->
-    <!-- <ion-title>please choose your option:</ion-title> -->
-    <ion-title>אנא בחר מספר סרטונים להצגה</ion-title>
+
     <ion-item>
-      <!-- <ion-label floating>enter number of videos</ion-label> -->
-      <ion-label floating>הכנס מספר סרטונים</ion-label>
-      <ion-input type="number" [(ngModel)]="videoNumber"></ion-input>
+      <!-- <ion-label>Time or Number of Videos?</ion-label> -->
+      <ion-label>זמן או מספר סרטונים?</ion-label>
+      <ion-toggle [(ngModel)]="isTime"></ion-toggle>
     </ion-item>
 
-    <!--
+
+
+    <div *ngIf="!isTime">
+      <!-- <ion-title>please choose your option:</ion-title> -->
+      <ion-title>אנא בחר מספר סרטונים להצגה</ion-title>
+      <ion-item>
+        <!-- <ion-label floating>enter number of videos</ion-label> -->
+        <ion-label floating>הכנס מספר סרטונים</ion-label>
+        <ion-input type="number" [(ngModel)]="videoNumber"></ion-input>
+      </ion-item>
+    </div>
+
+    <div *ngIf="isTime">
+      <!--
     <ion-item>
       <ion-range min="0" max="60" pin="true" [(ngModel)]="time" color="secondary">
         <ion-label range-left>0</ion-label>
         <ion-label range-right>60 minutes</ion-label>
       </ion-range>
-    </ion-item>
+    </ion-item> 
 
     <ion-item>
       <ion-label>Time</ion-label>
-      <ion-datetime displayFormat="mm:ss" [(ngModel)]="time"></ion-datetime>
+      <ion-datetime displayFormat="h:mm:ss" [(ngModel)]="time"></ion-datetime>
+    </ion-item> --
+
+    <ion-item>
+      <ion-label>דקות</ion-label>
+      <ion-datetime displayFormat="mm" [(ngModel)]="minutes"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>שעות</ion-label>
+      <ion-datetime displayFormat="h" [(ngModel)]="hours"></ion-datetime>
     </ion-item> -->
 
-    
+     <!-- <ion-title>please choose your option:</ion-title> -->
+     <ion-title>הזן זמן רצוי דקות ושעות</ion-title>
+     <ion-item>
+       <!-- <ion-label floating>enter number of videos</ion-label> -->
+       <ion-label floating>דקות</ion-label>
+       <ion-input type="number" min="0" max="60" [(ngModel)]="minutes"></ion-input>
+     </ion-item>
+     <ion-item>
+      <!-- <ion-label floating>enter number of videos</ion-label> -->
+      <ion-label floating>שעות</ion-label>
+      <ion-input type="number" min="0" max="12" [(ngModel)]="hours"></ion-input>
+    </ion-item>
+    </div>
+
+
     <!-- <button ion-button large block round outline (click)="start()">Let's start!</button> -->
     <button ion-button large block round outline (click)="start()">בואו נתחיל</button>
 
