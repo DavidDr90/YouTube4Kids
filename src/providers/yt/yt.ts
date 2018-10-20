@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
 import { Http } from '@angular/http';
+import { map } from 'rxjs/operators';
+
 
 
 const apiKey = "key=AIzaSyAS9M1PAYTOy1Tx1wg1yoddvc2iftUwkkU"

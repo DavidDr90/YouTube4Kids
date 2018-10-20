@@ -21,9 +21,12 @@ export class HomePage {
   isTime: any;
   time: any;
   lastMinute : boolean = false;
+  private isMobile: boolean = true;
+
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private loadingCtrl: LoadingController,
     private ytProvider: YtProvider, private alertCtrl: AlertController, private plt: Platform) {
+    this.isMobile = this.plt.is("mobile") ? true : false;
   }
 
   /** search on line for the releate vidoes with the input word
@@ -82,7 +85,13 @@ export class HomePage {
    */
   exitApp() {
     console.log("bye bye");
-    this.plt.exitApp();
+    if (this.plt.is("mobile")) {//if this a mobile app close the app
+      console.log("I'm mobile app");
+      this.plt.exitApp();
+    } else {//if this is a web page close the current tab
+      console.log("I'm browser app");
+      window.close();
+    }
   }
 
   presentLoadingText() {

@@ -17,7 +17,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
   <ion-item padding>
     <!-- <ion-label floating hint="enter">Enter Word</ion-label> -->
@@ -25,8 +25,17 @@
     <ion-input type="text" [(ngModel)]="query"></ion-input>
   </ion-item>
   <!-- <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button> -->
-  <button block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">חפש
-    ברשת</button>
+  <button *ngIf="isMobile"
+   block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">
+   חפש ברשת&nbsp; 
+   <ion-icon name="search"></ion-icon>
+  </button>
+
+  <button *ngIf="!isMobile"
+   larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">
+   חפש ברשת&nbsp; 
+   <ion-icon name="search"></ion-icon>
+  </button>
 
   <!-- <ion-title *ngIf="!found"> We did not found any results, please try again!</ion-title> -->
   <ion-title *ngIf="!found">לא מצאנו כלום, אנא חפש שוב!</ion-title>
