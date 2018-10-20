@@ -130,7 +130,7 @@ export class HomePage {
   countdwon(time: Date) {
     // Set the date we're counting down to
     var countDownDate = this.time.getTime();
-
+    var temp = this;//for using inside the setInterval function
     // Update the count down every 1 second
     var x = setInterval(function () {
 
@@ -151,12 +151,14 @@ export class HomePage {
       document.getElementById("countdwonTimer").innerHTML =
         hours + ":" + minutes + ":" + seconds;
 
+      
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdwonTimer").innerHTML = "It's Over! Bye Bye!";
-        this.exitApp();//TODO: cannot call outter function in setIntervale
+        temp.exitApp();
       }
+      
       //TODO:fix the color change in the last minute
       console.log("distance = " + distance);
       if(distance < 60000){
