@@ -6,8 +6,12 @@
 
   </ion-navbar>
   <ion-navbar>
-    <ion-title>
+    <ion-title *ngIf="!isTime">
       נשארו עוד {{ videoNumber }} סרטונים
+    </ion-title>
+    <ion-title *ngIf="isTime">
+      <p *ngIf="lastMinute" class="lastMinute" id="countdwonTimer"></p>
+      <p *ngIf="!lastMinute" class="allTime" id="countdwonTimer"></p>
     </ion-title>
     <!-- you have {{ videoNumber }} videos left to watch -->
   </ion-navbar>
@@ -21,7 +25,8 @@
     <ion-input type="text" [(ngModel)]="query"></ion-input>
   </ion-item>
   <!-- <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button> -->
-  <button block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">חפש ברשת</button>
+  <button block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">חפש
+    ברשת</button>
 
   <!-- <ion-title *ngIf="!found"> We did not found any results, please try again!</ion-title> -->
   <ion-title *ngIf="!found">לא מצאנו כלום, אנא חפש שוב!</ion-title>

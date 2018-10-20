@@ -29,15 +29,6 @@ export class PlayerPage {
     this.video = navParams.get("video");
     this.data = navParams.get("data");
     this.videoNumber = navParams.get("videoNumber");
-    if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
-      let alert = this.alertCtrl.create({
-        title: "You Don't have any videos left",
-        buttons: ['OK']
-      });
-      alert.present();
-      this.navCtrl.pop();
-    }
-    console.log("num in player = " + this.videoNumber);
     this.id = this.video.id.videoId;
   }
 

@@ -11,8 +11,8 @@ import { TranslateProvider } from '../../providers/translate/translate';
 export class WelcomePage {
 
   private videoNumber: number;
-  private isTime: boolean;
-  private time;
+  private isTime: boolean = false;
+  private time:Date;
   minutes;
   hours;
 
@@ -24,42 +24,44 @@ export class WelcomePage {
   start() {
     if (!this.isTime) {
       if ((this.videoNumber <= 0) || (this.videoNumber === undefined)) {
-        this.error("Invalid Video Number");
+        this.error("Invalid Video Number", "middle");
       } else {
         // set the home page as root page
         this.navCtrl.setRoot(HomePage, { "videoNumber": this.videoNumber });
       }
     } else {
-      if ( (this.minutes === undefined) && (this.hours === undefined) ) {
-        this.error("choose at least one parmeter, minutes or hours");
-      } else {
-        console.log(this.minutes);
-        console.log(this.hours);
+      if ((this.minutes < 0) || (this.minutes > 60))
+        this.error("minute must be between 0 to 60!", "button");
+      else if ((this.hours < 0) || (this.hours > 12))
+        this.error("hours must be above 0 and under 12!", "button");
+      else
+        if ((this.minutes === undefined) && (this.hours === undefined)) {
+          this.error("choose at least one parmeter, minutes or hours", "middle");
+        } else {
+          this.time = new Date();
+          if (this.minutes !== undefined)
+            this.time.setMinutes(this.time.getMinutes() + parseInt(this.minutes));
+          if (this.hours !== undefined)
+            this.time.setHours(this.time.getHours() + parseInt(this.hours));
+          console.log(this.time);
 
-        // let temp = new Date();
-        // temp.setHours(this.hours);
-        // temp.setMinutes(this.minutes);
-        // console.log(temp);
-        // set the home page as root page
-        // this.navCtrl.setRoot(HomePage, { "videoNumber": this.time });
-      }
+
+          console.log("isTime = " + this.isTime);
+          console.log("time: " + this.time);
+
+          this.navCtrl.setRoot(HomePage, {
+            "isTime": this.isTime, "time": this.time
+          })
+        }
     }
   }
 
-  error(meg:string){
-    /*
-    let alert = this.alertCtrl.create({
-      title: meg,
-      buttons: ['OK']
-    });
-    alert.present();
-    */
-
+  error(meg: string, position: string) {
     let toast = this.toastCtrl.create({
       message: meg,
       duration: 2000,
-      position: 'middle'
-    });  
+      position: position
+    });
     toast.present();
   }
 
