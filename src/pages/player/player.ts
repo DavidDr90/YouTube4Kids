@@ -22,6 +22,7 @@ export class PlayerPage {
   private data;
   private duration;
   private videoNumber;
+  private isMobile:boolean = true;
 
   constructor(public navCtrl: NavController, private insomnia: Insomnia,
     public plt: Platform,
@@ -39,6 +40,8 @@ export class PlayerPage {
     }
     console.log("num in player = " + this.videoNumber);
     this.id = this.video.id.videoId;
+
+    this.isMobile = this.plt.is("mobile") ? true : false;
   }
 
   savePlayer(player) {

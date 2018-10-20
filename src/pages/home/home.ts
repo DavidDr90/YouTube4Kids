@@ -18,10 +18,12 @@ export class HomePage {
 
   videoNumber;
   found: boolean = true;
+  private isMobile:boolean = true;
 
   constructor(public navCtrl: NavController, private navParams: NavParams, private loadingCtrl: LoadingController,
     private ytProvider: YtProvider, private alertCtrl: AlertController, private plt: Platform) {
-  }
+      this.isMobile = this.plt.is("mobile") ? true : false;
+    }
 
   /** search on line for the releate vidoes with the input word
    */
@@ -79,7 +81,11 @@ export class HomePage {
    */
   exitApp() {
     console.log("bye bye");
-    this.plt.exitApp();
+    if (this.plt.is("mobile"))//if this a mobile app close the app
+      this.plt.exitApp();
+    else {//if this is a web page close the current tab
+      window.close();
+    }
   }
 
   presentLoadingText() {
