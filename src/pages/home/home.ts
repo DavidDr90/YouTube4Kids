@@ -155,7 +155,7 @@ export class HomePage {
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdwonTimer").innerHTML = "It's Over! Bye Bye!";
-        this.exitApp();
+        this.exitApp();//TODO: cannot call outter function in setIntervale
       }
       //TODO:fix the color change in the last minute
       console.log("distance = " + distance);
