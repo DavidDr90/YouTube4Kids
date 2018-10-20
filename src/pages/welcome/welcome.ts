@@ -25,7 +25,8 @@ export class WelcomePage {
       });
       alert.present();
     } else {
-      this.navCtrl.push(HomePage, { "videoNumber": this.videoNumber });
+      // set the home page as root page
+      this.navCtrl.setRoot(HomePage, { "videoNumber": this.videoNumber });
     }
   }
 

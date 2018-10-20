@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { Insomnia } from '@ionic-native/insomnia';
 
 /**
  *  for the youtube player we used the next github project:
@@ -21,8 +22,11 @@ export class PlayerPage {
   private data;
   private duration;
   private videoNumber;
+  private isMobile:boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private insomnia: Insomnia,
+    public plt: Platform,
+    public navParams: NavParams, private alertCtrl: AlertController) {
     this.video = navParams.get("video");
     this.data = navParams.get("data");
     this.videoNumber = navParams.get("videoNumber");
@@ -36,20 +40,17 @@ export class PlayerPage {
     }
     console.log("num in player = " + this.videoNumber);
     this.id = this.video.id.videoId;
-    // make the duration
-    this.duration = new Date(this.ISO8601toMilliseconds(this.data.contentDetails.duration))
-    console.log("sec = " + this.duration.getSeconds());
-    if (this.duration.getSeconds() >= 10) {
-      this.duration = this.duration.getMinutes() + ":" + this.duration.getSeconds();
-    } else {
-      this.duration = this.duration.getMinutes() + ":0" + this.duration.getSeconds();
 
-    }
-    console.log(this.duration);
+    this.isMobile = this.plt.is("mobile") ? true : false;
   }
 
   savePlayer(player) {
     this.player = player;
+    this.player.setLoop(false);
+    var date = new Date(null);
+    date.setSeconds(this.player.getDuration()); // specify value for SECONDS here
+    var timeString = date.toISOString().substr(11, 8);
+    this.duration = timeString;
   }
 
   firstTime: Boolean = false;
@@ -65,10 +66,21 @@ export class PlayerPage {
           this.videoNumber--;
           this.firstTime = true
         }
+        if (this.plt.is("mobile"))
+          this.insomnia.keepAwake()
+            .then(
+              () => console.log('keepAwake success'),
+              () => console.log('keepAwake error')
+            );
         break;
       case STOP:
         console.log("stop");
-        console.log("num of video = " + this.videoNumber);
+        if (this.plt.is("mobile"))
+          this.insomnia.allowSleepAgain()
+            .then(
+              () => console.log('allowSleepAgain success'),
+              () => console.log('allowSleepAgain error')
+            );
         this.navCtrl.pop();
         break;
       case PAUSE:
@@ -114,4 +126,29 @@ export class PlayerPage {
     return milli;
   }
 
+  /** when temperary leave the app pause the youtube video
+   * 
+   */
+  ionViewDidLeave() {
+    this.player.pauseVideo();
+    if (this.plt.is("mobile"))
+      this.insomnia.allowSleepAgain()
+        .then(
+          () => console.log('allowSleepAgain success'),
+          () => console.log('allowSleepAgain error')
+        );
+  }
+
+  /** when closing the app stop the video
+   * 
+   */
+  ionViewWillUnload() {
+    this.player.stopVideo()
+    if (this.plt.is("mobile"))
+      this.insomnia.allowSleepAgain()
+        .then(
+          () => console.log('allowSleepAgain success'),
+          () => console.log('allowSleepAgain error')
+        );
+  }
 }

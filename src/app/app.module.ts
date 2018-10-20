@@ -11,7 +11,7 @@ import { HttpModule } from "@angular/http";
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 
 import { YoutubePlayerModule } from 'ngx-youtube-player';
-// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Insomnia } from '@ionic-native/insomnia';
 
 import { VideoPlayer  } from "@ionic-native/video-player";
 import { PlayerPage } from '../pages/player/player';
@@ -48,7 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     YoutubeVideoPlayer,
     VideoPlayer,
     TranslateProvider,
-    TranslateProvider
+    Insomnia
   ]
 })
 export class AppModule { }

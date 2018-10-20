@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.DavidDr90.YouTube4Kids" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.DavidDr90.YouTube4Kids" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>YouTube4Kids</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="davidd.r.90@gmail.com">David's Production</author>
@@ -85,5 +85,6 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-youtube-video-player" spec="^1.0.6" />
     <plugin name="com.moust.cordova.videoplayer" spec="https://github.com/moust/cordova-plugin-videoplayer" />
+    <plugin name="cordova-plugin-insomnia" spec="^4.3.0" />
     <engine name="android" spec="6.4.0" />
 </widget>
