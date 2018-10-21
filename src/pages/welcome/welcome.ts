@@ -12,7 +12,7 @@ export class WelcomePage {
 
   private videoNumber: number;
   private isTime: boolean = false;
-  private time:Date;
+  private time: Date;
   minutes;
   hours;
 
@@ -43,14 +43,10 @@ export class WelcomePage {
             this.time.setMinutes(this.time.getMinutes() + parseInt(this.minutes));
           if (this.hours !== undefined)
             this.time.setHours(this.time.getHours() + parseInt(this.hours));
-          console.log(this.time);
-
-
-          console.log("isTime = " + this.isTime);
-          console.log("time: " + this.time);
 
           this.navCtrl.setRoot(HomePage, {
-            "isTime": this.isTime, "time": this.time
+            "isTime": this.isTime,
+            "time": this.time
           })
         }
     }

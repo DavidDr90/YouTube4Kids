@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { YtProvider } from '../../providers/yt/yt';
 
 import { PlayerPage } from '../player/player';
+import { min } from 'rxjs/operators';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'page-home',
@@ -20,7 +22,7 @@ export class HomePage {
   found: boolean = true;
   isTime: any;
   time: any;
-  lastMinute : boolean = false;
+  lastMinute: boolean = false;
   private isMobile: boolean = true;
 
 
@@ -69,7 +71,9 @@ export class HomePage {
       this.navCtrl.push(PlayerPage, {
         "video": video,
         "data": data[0],
-        "videoNumber": this.videoNumber
+        "videoNumber": this.videoNumber,
+        "time":this.time,
+        "isTime":this.isTime
       });
     }, err => {
       let alert = this.alertCtrl.create({
@@ -116,7 +120,6 @@ export class HomePage {
     this.isTime = this.navParams.get("isTime");
     if (this.isTime) {
       this.time = this.navParams.get("time");
-      console.log("time in home page = " + this.time);
       this.countdwon(this.time);
     } else {
       this.videoNumber = this.navParams.get("videoNumber");
@@ -146,24 +149,34 @@ export class HomePage {
       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      //TODO:fix the display when 0 is left
+      //fix the display when 0 is left
+      var str = "";
+      if (hours < 10)
+        str += "0" + hours + ":";
+      else
+        str += hours + ":"
+      if (minutes < 10)
+        str += "0" + minutes + ":";
+      else
+        str += minutes + ":"
+      if (seconds < 10)
+        str += "0" + seconds
+      else
+        str += seconds
       // Display the result in the element with id="countdwonTimer"
-      document.getElementById("countdwonTimer").innerHTML =
-        hours + ":" + minutes + ":" + seconds;
+      document.getElementById("countdwonTimer").innerHTML = str;
 
-      
       // If the count down is finished, write some text 
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("countdwonTimer").innerHTML = "It's Over! Bye Bye!";
-        temp.exitApp();
+        setTimeout(() => {
+          temp.exitApp();
+        }, 2000);
       }
-      
-      //TODO:fix the color change in the last minute
-      console.log("distance = " + distance);
-      if(distance < 60000){
-        console.log("last minute!");
-        this.lastMinute = true;
+
+      if (distance < 60000) {
+        temp.lastMinute = true;
       }
     }, 1000);
   }

@@ -4,35 +4,31 @@
       YouTube4Kids
     </ion-title>
   </ion-navbar>
+  
+  <!-- <ion-navbar *ngIf="isTime">
+    <ion-title>
+      <p *ngIf="lastMinute" class="lastMinute" id="countdwonTimer"></p>
+      <p *ngIf="!lastMinute" class="allTime" id="countdwonTimer"></p>
+    </ion-title>
+  </ion-navbar> -->
+
 </ion-header>
 
 
 <ion-content padding>
 
   <span *ngIf="isMobile">
-    <youtube-player
-    height = "50%"
-    width = "100%"
-    [videoId]="id"
-    (ready)="savePlayer($event)"
-    (change)="onStateChange($event)"
-    ></youtube-player>
+    <youtube-player height="50%" width="100%" [videoId]="id" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
   </span>
 
-    <span id="ytplayer" *ngIf="!isMobile">
-      <youtube-player
-    height = "50%"
-    width = "50%"
-    [videoId]="id"
-    (ready)="savePlayer($event)"
-    (change)="onStateChange($event)"
-    ></youtube-player>
-    </span>
+  <span id="ytplayer" *ngIf="!isMobile">
+    <youtube-player height="50%" width="50%" [videoId]="id" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
+  </span>
 
-    <ion-item padding no-line text-wrap>
-      <h1>{{ video.snippet.title }}</h1>
-    </ion-item>
-    <p> {{ video.snippet.channelTitle }} </p>
-    <p> {{ duration }}</p>
-    <p>{{ video.snippet.description | slice: 0 : 100 }}</p>
+  <ion-item padding no-line text-wrap>
+    <h1>{{ video.snippet.title }}</h1>
+  </ion-item>
+  <p> {{ video.snippet.channelTitle }} </p>
+  <p> {{ duration }}</p>
+  <p>{{ video.snippet.description | slice: 0 : 100 }}</p>
 </ion-content>
