@@ -1,9 +1,16 @@
 # YouTube4Kids
 
-The app provide the parents the controle over the number of videos the kids can watch.
-In the first screen the parent ask to select how many videos the child can watch, then the child or the parent can search a video on YouTube using the search box and watch the video.
-When the video start the counter is decrease by one, and when the kid watch all the videos that the parent set the app automaticly will close.
+A basic app that help parents to controle who mach time thire kids spend watching YouTube videos.
+The parent can choose to limit the number of videos the child can watch or to set a period of time witch in the end of that period the app will close.
 
-### Firebase Hosting
+## Motivation
+This app was build for the creator own use. 
+
+## Firebase Hosting
 You can found the web version in the following link:
 https://4kids-218009.firebaseapp.com
+
+## Android APKs
+Under [APKs folder](https://github.com/DavidDr90/YouTube4Kids/tree/master/APKs) in this repository you can find the APKs for android devices.
+## License
+Under [MIT License](https://github.com/DavidDr90/YouTube4Kids/blob/master/LICENSE) (C) David Recanati
