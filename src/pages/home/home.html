@@ -18,24 +18,24 @@
 </ion-header>
 
 <ion-content padding>
-
   <ion-item padding>
     <!-- <ion-label floating hint="enter">Enter Word</ion-label> -->
     <ion-label floating hint="חיפוש">הכנס מילה לחיפוש</ion-label>
     <ion-input type="text" [(ngModel)]="query"></ion-input>
   </ion-item>
+  <p></p>
   <!-- <button full ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">Search</button> -->
   <button *ngIf="isMobile" block larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''"
-    color="danger">
+    color="rgb(45,185,228)">
     חפש ברשת&nbsp;
     <ion-icon name="search"></ion-icon>
   </button>
 
-  <button *ngIf="!isMobile" larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="danger">
+  <button *ngIf="!isMobile" larg round outline ion-button (click)="searchOnYouTube()" [disabled]="query === ''" color="rgb(45,185,228)">
     חפש ברשת&nbsp;
     <ion-icon name="search"></ion-icon>
   </button>
-
+  <p></p>
   <!-- <ion-title *ngIf="!found"> We did not found any results, please try again!</ion-title> -->
   <ion-title *ngIf="!found">לא מצאנו כלום, אנא חפש שוב!</ion-title>
   <ion-list text-wrap no-padding *ngIf="found">

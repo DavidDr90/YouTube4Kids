@@ -1,9 +1,29 @@
 page-player {
-    p{
-        align-self: center;
-        padding-right: 10%;
-    }
-   
+        ion-content{
+            background-image: url("../../assets/imgs/homePageBackground.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        p{
+            align-self: center;
+            margin-right: 5%;
+           // padding-right: 10%;
+        }
+        .textBox {
+            padding: 5%, 5%, 5%, 5%;
+            margin-top: 1%;
+            background-color: white;
+            border: 2px solid rgb(45, 185, 228);
+            border-radius: 15px;
+            opacity: 0.6;
+            filter: alpha(opacity=60); /* For IE8 and earlier */
+          }
+          h1{
+            text-align: center;
+            font-weight: bold;
+            color:black;
+            padding: 5%,5%,5%,5%;
+          }   
         .toolbar-content{
             position: absolute;
             width: 100%;

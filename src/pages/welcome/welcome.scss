@@ -1,4 +1,23 @@
 page-welcome {
+    ion-content{
+        background-image: url("../../assets/imgs/homePageBackground.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .textBox {
+        padding: 10%, 10%, 10%, 10%;
+        margin-bottom: 5%;
+        background-color: white;
+        border: 3px solid white;
+      }
+
+      ion-title{
+        text-align: center;
+        font-weight: bold;
+        color:black;
+      }
+    
     .scroll-content{
         justify-content: center;
         display: flex!important;

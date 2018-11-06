@@ -15,21 +15,22 @@
       </ion-item>
     </ion-list-header> -->
 
+    <div class="textBox">
     <ion-item>
       <!-- <ion-label>Time or Number of Videos?</ion-label> -->
-      <ion-label>זמן או מספר סרטונים?</ion-label>
+      <ion-label color="rgb(45,185,228)">זמן או מספר סרטונים?</ion-label>
       <ion-toggle [(ngModel)]="isTime"></ion-toggle>
     </ion-item>
+  </div>
 
-
-
+    <div class="textBox">
     <div *ngIf="!isTime">
       <!-- <ion-title>please choose your option:</ion-title> -->
-      <ion-title>אנא בחר מספר סרטונים להצגה</ion-title>
+      <ion-title>הכנס מספר סרטונים רצוי לצפייה</ion-title>
       <ion-item>
         <!-- <ion-label floating>enter number of videos</ion-label> -->
-        <ion-label floating>הכנס מספר סרטונים</ion-label>
-        <ion-input type="number" [(ngModel)]="videoNumber"></ion-input>
+        <!-- <ion-label floating>הכנס מספר סרטונים</ion-label> -->
+        <ion-input type="number" [(ngModel)]="videoNumber" placeholder="מספר סרטונים להצגה"></ion-input>
       </ion-item>
     </div>
 
@@ -57,23 +58,23 @@
     </ion-item> -->
 
      <!-- <ion-title>please choose your option:</ion-title> -->
-     <ion-title>הזן זמן רצוי דקות ושעות</ion-title>
+     <ion-title>הכנס זמן רצוי לצפייה</ion-title>
      <ion-item>
        <!-- <ion-label floating>enter number of videos</ion-label> -->
-       <ion-label floating>דקות</ion-label>
-       <ion-input type="number" min="0" max="60" [(ngModel)]="minutes"></ion-input>
+       <!-- <ion-label floating>דקות</ion-label> -->
+       <ion-input type="number" min="0" max="60" [(ngModel)]="minutes" placeholder="דקות"></ion-input>
      </ion-item>
      <ion-item>
       <!-- <ion-label floating>enter number of videos</ion-label> -->
-      <ion-label floating>שעות</ion-label>
-      <ion-input type="number" min="0" max="12" [(ngModel)]="hours"></ion-input>
+      <!-- <ion-label floating>שעות</ion-label> -->
+      <ion-input type="number" min="0" max="12" [(ngModel)]="hours" placeholder="שעות"></ion-input>
     </ion-item>
     </div>
 
-
+  </div>
     <!-- <button ion-button large block round outline (click)="start()">Let's start!</button> -->
-    <button ion-button large block round outline (click)="start()">בואו נתחיל</button>
-
+    <button ion-button large block round outline (click)="start()" color="rgb(45,185,228)">בואו נתחיל</button>
+  
   </ion-list>
 
 </ion-content>

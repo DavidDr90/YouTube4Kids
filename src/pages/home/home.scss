@@ -1,4 +1,9 @@
 page-home {
+      ion-content{
+        background-image: url("../../assets/imgs/homePageBackground.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
     .toolbar-content{
         position: absolute;
         width: 100%;
@@ -10,12 +15,14 @@ page-home {
         color:black
     } 
     .lastMinute{
-        color: red;
+        color:rgb(45, 185, 228);
         -webkit-animation: flickerAnimation 1s infinite;
          -moz-animation: flickerAnimation 1s infinite;
          -o-animation: flickerAnimation 1s infinite;
           animation: flickerAnimation 1s infinite;
     }
+
+ 
     
     @keyframes flickerAnimation {
         0%   { opacity:1; }

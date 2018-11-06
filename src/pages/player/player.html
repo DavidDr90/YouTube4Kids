@@ -25,10 +25,13 @@
     <youtube-player height="50%" width="50%" [videoId]="id" (ready)="savePlayer($event)" (change)="onStateChange($event)"></youtube-player>
   </span>
 
-  <ion-item padding no-line text-wrap>
-    <h1>{{ video.snippet.title }}</h1>
-  </ion-item>
-  <p> {{ video.snippet.channelTitle }} </p>
-  <p> {{ duration }}</p>
-  <p>{{ video.snippet.description | slice: 0 : 100 }}</p>
+  <div class="textBox">
+    <!-- <ion-item padding no-line text-wrap> -->
+      <h1> {{ video.snippet.title }}</h1>
+    <!-- </ion-item> -->
+    <p> {{ video.snippet.channelTitle }} </p>
+    <p> {{ duration }}</p>
+    <p text-wrap>{{ video.snippet.description | slice: 0 : 100 }}</p>
+  </div>
+
 </ion-content>
